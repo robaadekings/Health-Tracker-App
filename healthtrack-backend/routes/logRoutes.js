@@ -3,7 +3,9 @@ const {
     upsertDailyLog,
     getDailyLog,
     deleteDailyLog,
-    listLogs
+    listLogs,
+    getWeeklySummary,
+    getMonthlySummary
 } = require('../controllers/logController');
 const { protect } = require('../middleware/authMiddleware');
 const router = express.Router();
@@ -17,5 +19,8 @@ router.route('/')
 router.route('/:date')
     .get(getDailyLog)
     .delete(deleteDailyLog);
+
+router.get('/summary/weekly', getWeeklySummary);
+router.get('/summary/monthly', getMonthlySummary);
 
 module.exports = router;
